@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://ogp.me/ns/fb#" ng-app="mostrx">
+	<head>
+	  <title>Search Prescription Drug Coupons | MostRx</title>
+	  <meta name="description" content="With so many apps claiming to save you money on <%= drug ? drug.replace(/-/g, ' ') : 'your prescriptions' %> where do you start? Right here. MostRx searches a variety of discounters for you to find the coupons that give you the very lowest prices. Don't just save on your prescriptions, save the most with MostRx!">
+	  <meta property="og:image" content="/images/preview.png" />
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+	  <link rel="stylesheet" href="/css/main.css">
+	  <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	  <link rel="shortcut icon" type="image/icon" href="/images/favicon.ico">
+	  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	  <script src="https://cdn.usebootstrap.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6405405414435615" crossorigin="anonymous"></script>
+	  <script src="/js/main.js"></script>
+	  <script src="/js/controller.js"></script>
+	</head>
+	<body ng-controller="MostRxController as controller" drug="<%= drug %>" class="ng-cloak">
+		<%- include ("../partials/nav.ejs") %>
+		<%- include ("../partials/home.ejs") %>
+		<%- include ("../partials/rx.ejs") %>
+		<%- include ("../partials/footer.ejs") %>
+	</body>
+</html>

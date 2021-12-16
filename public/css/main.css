@@ -1,0 +1,180 @@
+html {
+	background: rgb(201, 201, 201);
+}
+
+body {
+	margin-top: 20px;
+	background: #f8f8f8;
+}
+
+#container {
+	background: #f8f8f8;
+}
+
+@keyframes spinning {
+	from {
+		transform: rotate(0deg)
+	}
+	to {
+		transform: rotate(360deg)
+	}
+}
+
+.spin {
+	animation-name: spinning;
+	animation-duration: 1.4s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+span.badge-pill.goodrx {
+	background-color: #f8e547;
+	color: #000;
+}
+
+span.badge-pill.singlecare {
+	background-color: #532b9f;
+	color: #fff;
+}
+
+span.badge-pill.buzzrx {
+	background-color: #ffc700;
+	color: #000;
+}
+
+span.badge-pill.werx {
+	background-color: #e21735;
+	color: #fff;
+}
+
+span.badge-pill.rxspark {
+	background-color: #229955;
+	color: #fff;
+}
+
+span.badge-pill.insiderx {
+	background-color: rgb(0, 102, 204);
+	color: #fff;
+}
+
+#loading>img {
+	width: 370px;
+	height: 190px;
+	display: block;
+	margin: 190px auto;
+}
+
+input[type=checkbox] {
+	margin: 0.5em 0.5em 0 -0.5em;
+}
+
+#custom-quantity {
+	width: 4em;
+}
+
+#zip-group {
+	width: 5em;
+}
+
+nav.navbar-dark {
+	background-color: #637380 !important;
+}
+
+a.navbar-brand {
+	font-family: 'sani_trixie_sansregular', Arial, sans-serif;
+	font-size: 4em;
+	margin-top: -0.2em;
+	margin-bottom: -0.2em;
+}
+
+.tagline {
+	font-family: 'sani_trixie_sansregular', Arial, sans-serif;
+	color: #fff;
+}
+
+@font-face {
+	font-family: 'sani_trixie_sansregular';
+	src: url('../fonts/sanitrixiesans-webfont.woff2') format('woff2'), url('../fonts/sanitrixiesans-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+nav input {
+	min-width: 360px;
+}
+
+label,
+.nav-item a,
+a.page-link {
+	color: #637380;
+}
+
+li.page-item.active .page-link {
+	background-color: #637380;
+	border-color: #637380;
+}
+
+button.btn.btn-red {
+	background-color: #ca423f;
+	color: #fff;
+}
+
+button.btn.btn-red i {
+	margin-right: 8px;
+}
+
+footer {
+	background-color: rgb(212, 212, 212);
+}
+
+footer .footer-copyright {
+	background-color: rgb(0, 0, 0, 0.05);
+}
+
+footer img {
+	height: 60px;
+}
+
+footer a {
+	color: rgba(0, 0, 0, 0.5);
+}
+
+#home {
+	background: url("/images/bg.png");
+}
+
+#main-searchbox,
+#suggested-searches {
+	max-width: 800px;
+}
+
+#suggested-searches button.btn.btn-outline-dark:not(:hover) {
+	background-color: rgba(255, 255, 255, 0.6);
+}
+
+#suggested-searches h5 {
+	color: #fff;
+}
+
+#main-searchbox .dropdown-menu {
+	width: 99%;
+}
+
+nav .dropdown-menu {
+	width: 98%;
+}
+
+footer a:hover,
+footer a:active {
+	color: #f34f4c;
+}
+
+#home h1,
+#home h2 {
+	color: rgba(255, 255, 255, 0.9);
+	text-shadow: 2px 2px #000;
+}
+
+.dropdown-menu.show:empty {
+	display: none;
+}

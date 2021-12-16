@@ -1,0 +1,22 @@
+<nav class="navbar navbar-dark navbar-expand-lg shadow-lg">
+   <a class="navbar-brand" href="/"><strong>Most</strong>Rx</a>
+   <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+         <span class="tagline">Less searching. Most savings.</span>
+      </li>
+   </ul>
+   <form class="form-inline my-2 my-lg-0" ng-if="drugName">
+      <div class="input-group">
+         <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+            <i class="fa fa-search"></i>
+            </span>
+         </div>
+         <div class="dropdown-menu autocomplete">
+            <a ng-repeat="drug in searchResults" ng-click="isLoading = true; selectDrug(drug.slug, $event)" class="dropdown-item" href="/rx/{{ drug.slug }}">{{ drug.name }}</a>
+            <a ng-if="q && !isSearching && !searchResults.length" class="dropdown-item" href="javascript:void(0)">No matching medications found.</a>
+         </div>
+         <input class="autocomplete form-control mr-sm-2" type="search" placeholder="Search for another medication..." ng-model="q" ng-change="search(q)">
+      </div>
+   </form>
+</nav>

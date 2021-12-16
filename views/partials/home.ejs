@@ -1,0 +1,48 @@
+<div id="home" class="px-2" ng-if="!drugName">
+   <div class="mx-auto p-5 text-center">
+      <h1>
+         Don't just save on your prescriptions, save the <strong>most</strong>
+      </h1>
+      <h2>
+         by comparing discounts with MostRx
+      </h2>
+   </div>
+   <div id="main-searchbox" class="input-group mx-auto">
+      <div class="input-group-prepend">
+         <span class="input-group-text" id="basic-addon1">
+         <i class="fa fa-search"></i>
+         </span>
+      </div>
+      <div class="dropdown-menu autocomplete">
+         <a ng-repeat="drug in searchResults" ng-click="selectDrug(drug.slug, $event)" class="dropdown-item" href="/rx/{{ drug.slug }}">{{ drug.name }}</a>
+         <a ng-if="q && !isSearching && !searchResults.length" class="dropdown-item" href="javascript:void(0)">No matching medications found.</a>
+      </div>
+      <input class="autocomplete form-control mr-sm-2" type="search" placeholder="Search for a medication..." ng-model="q" ng-change="search(q)">
+   </div>
+   <div id="suggested-searches" class="mx-auto container py-5">
+      <div class="row">
+         <div class="col-md-12" ng-if="!recentDrugs">
+            <h5>Top Searches</h5>
+            <button type="button" class="btn btn-outline-dark mr-2 mt-2" ng-repeat="drug in topDrugs" ng-click="selectDrug(drug)">{{ drug }}</button>
+         </div>
+         <div class="col-md-12" ng-if="recentDrugs">
+            <h5>Recent Searches <button class="btn btn-red mx-1" ng-click="clearHistory()">Clear</button></h5>
+            <button type="button" class="btn btn-outline-dark mr-2 mt-2" ng-repeat="drug in recentDrugs" ng-click="selectDrug(drug)">{{ drug }}</button>
+         </div>
+      </div>
+   </div>
+   <div class="ad max-auto py-5 text-center">
+	   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6405405414435615"
+		 crossorigin="anonymous"></script>
+		<!-- banner -->
+		<ins class="adsbygoogle"
+			 style="display:block"
+			 data-ad-client="ca-pub-6405405414435615"
+			 data-ad-slot="4686389934"
+			 data-ad-format="auto"
+			 data-full-width-responsive="true"></ins>
+		<script>
+			 (adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+   </div>
+</div>
