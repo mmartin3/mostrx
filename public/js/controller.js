@@ -43,8 +43,43 @@ app.controller('MostRxController', function($scope, $attrs) {
 		nextPage: function() {
 			$scope.goToPage(Math.min($scope.currentPage + 1, Math.ceil($scope.coupons.length / controller.rpp)));
 		},
-		openCoupon: function(url) {
-			window.open('/coupon/' + encodeURIComponent(btoa(url)));
+		openCoupon: function(coupon) {
+			var brandName = (function(brands) {
+				for (brand of brands) {
+					if (brand.isGeneric) {
+						continue;
+					}
+					
+					return brand.name.formatSlug();
+				}
+				
+				return '';
+			})(Object.values($scope.options));
+			
+			var displayQuantity = (function() {
+				if (controller.current.form.name == 'Bottle') {
+					return '1 Bottle';
+				} else {
+					return controller.current.quantity.amt + ' ' + controller.current.form.name + 's';
+				}
+			})();
+			
+			var name = controller.current.brand.name.toSlug(), params = [
+				coupon.pharmacy, 
+				brandName || name,
+				controller.current.brand.name.formatSlug(), 
+				name, 
+				controller.current.quantity.ndc, 
+				controller.current.strength.strength,
+				displayQuantity,
+				$scope.zipCode,
+				coupon.price,
+				btoa(coupon.url)
+			].map(function(param) {
+				return encodeURIComponent(param);
+			});
+			
+			window.open('/coupon/' + params.join('/'));
 		},
 		orderedStrengths: function() {
 			if (!$scope.selections.hasOwnProperty('form')) {
@@ -149,8 +184,10 @@ app.controller('MostRxController', function($scope, $attrs) {
 			$scope.initTable();
 			$scope.isLoading = true;
 			var rid = Math.floor(Math.random() * 1000000000), brandSlug = controller.getBrand().toSlug(), lat = controller.latlng[0], lng = controller.latlng[1];
-			controller.validate();
+			controller.validateForm();
+			controller.validateStrength();
 			var sel = $scope.selections, slug = sel.brand.name.toSlug(), gb = $scope.selections.brand.isGeneric ? 'G' : 'B';
+			controller.current = sel;
 			
 			var encodedParams = [$scope.drugName, sel.quantity.ndc, slug, brandSlug, gb, sel.form.name, sel.strength.strength, sel.quantity.amt, $scope.zipCode, lat, lng, controller.attempt, rid].map(function(param) {
 				return encodeURIComponent(param);
@@ -269,7 +306,12 @@ app.controller('MostRxController', function($scope, $attrs) {
 			return controller._getDefault($scope.selections.form.strengths);
 		},
 		latlng: (function(lat, lng) {
-			return lat && lng ? [lat, lng] : ['-95.73154475', '29.82955575'];
+			if (lat === '-95.73154475' && lng === '29.82955575') {
+				lat = '29.82955575';
+				lng = '-95.73154475';
+			}
+			
+			return lat && lng ? [lat, lng] : ['29.82955575', '-95.73154475'];
 		})(localStorage.getItem('lat'), localStorage.getItem('lng')),
 		lookupZip: function(zipCode) {
 			$scope.zipCode = zipCode;
@@ -287,8 +329,6 @@ app.controller('MostRxController', function($scope, $attrs) {
 						delete $scope.loadingZip;
 					});
 				}
-			}).catch(function() {
-				
 			});
 		},
 		processResponses: function(responses) {
